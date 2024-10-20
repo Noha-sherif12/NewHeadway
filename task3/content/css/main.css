@@ -1,0 +1,99 @@
+.bg-gray {
+  background-color: #fafbfb;
+}
+
+.bg-edit {
+  background-color: #b4b4b4;
+}
+
+.w-132 {
+  width: 132px;
+}
+
+@font-face {
+  font-family: Fira-sans;
+  src: url(../fonts/FiraSans-Regular.ttf);
+}
+body {
+  font-family: Fira-sans;
+}
+
+table tr {
+  border-bottom: 1px solid #EAF1F3;
+}
+table th {
+  font-weight: 400;
+  color: #a0abb0;
+  padding-block: 16px;
+}
+table td {
+  padding-block: 16px;
+  font-size: 14px;
+  color: #102C38;
+}
+table td i {
+  font-size: 18px;
+  color: #357860;
+}
+table .editIcon {
+  cursor: pointer;
+}
+
+.edit-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.edit-container .close-btn {
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.edit-container form {
+  position: absolute;
+  width: 700px;
+  top: 20%;
+  left: 28%;
+  padding: 48px;
+  border-radius: 8px;
+}
+.edit-container form div {
+  margin-bottom: 10px;
+}
+.edit-container form div label {
+  margin-bottom: 5px;
+}
+
+.custom-checkbox {
+  display: none;
+}
+
+.custom-checkbox + label {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #bbc3c6;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-checkbox:checked + label {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.custom-checkbox:checked + label:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  left: 8px;
+  top: 4px;
+}/*# sourceMappingURL=main.css.map */

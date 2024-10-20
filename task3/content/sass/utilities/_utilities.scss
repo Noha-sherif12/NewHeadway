@@ -1,0 +1,13 @@
+@use '../variables/variables' as*;
+
+.bg-gray{
+    background-color: $bg-gray;
+}
+
+.bg-edit{
+    background-color: $bg-edit;
+}
+
+.w-132{
+    width: 132px;
+}

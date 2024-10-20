@@ -1,0 +1,95 @@
+@use "./variables/variables" as *;
+@use "./utilities/utilities" as *;
+
+@font-face {
+  font-family: Fira-sans;
+  src: url(../fonts/FiraSans-Regular.ttf);
+}
+
+body {
+  font-family: Fira-sans;
+}
+
+table {
+  tr{
+    border-bottom: 1px solid $light-gray;
+  }  
+  th {
+    font-weight: 400;
+    color: $gray;
+    padding-block: $p-16;
+  }
+  td {
+    padding-block: $p-16;
+    font-size: $p-14;
+    color: $dark-gray;
+    i{
+        font-size: $p-18;
+        color: $primary-color;
+    }
+    
+  }
+  .editIcon{
+    cursor: pointer;
+}
+}
+
+.edit-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    .close-btn{
+        border: none;
+        position: absolute;
+        right: $p-10;
+        top: $p-10;
+    }
+    form{
+        position: absolute;
+        width: 700px;
+        top: 20%;
+        left: 28%;
+        padding: $p-48;
+        border-radius: $p-8;
+        div{
+            margin-bottom: $p-10;
+            label{
+                margin-bottom: $p-5;
+            }
+        }
+    }
+}
+
+
+.custom-checkbox {
+    display: none;
+}
+
+.custom-checkbox + label {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #bbc3c6; 
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer; 
+}
+
+.custom-checkbox:checked + label {
+    background-color: #007bff;
+    border-color: #007bff; 
+}
+
+.custom-checkbox:checked + label:before {
+    content: "";
+    position: absolute;
+    width: 8px; 
+    height: 12px; 
+    border: solid white; 
+    border-width: 0 2px 2px 0; 
+    transform: rotate(45deg); 
+    left: 8px; 
+    top: 4px;
+}
