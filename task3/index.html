@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./content/css/all.min.css">
+    <link rel="stylesheet" href="./content/css/main.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <table class="w-50">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>User</th>
+                    <th>Cart</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                <!-- <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Bessie Cooper</td>
+                    <td>IBM</td>
+                    <td>
+                        <img src="./content/images/image-1.svg" alt="profile picture">
+                    </td>
+                    <td>453 €</td>
+                    <td id="editIcon"><i class="fa-solid fa-pen"></i></td>
+                </tr>
+                <tr class="bg-gray">
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Wade Warren</td>
+                    <td>L'Oréal</td>
+                    <td>
+                        <img src="./content/images/image-2.svg" alt="profile picture">
+                    </td>
+                    <td>994 €</td>
+                    <td id="editIcon"><i class="fa-solid fa-pen"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Arlene McCoy</td>
+                    <td>Gillette</td>
+                    <td>
+                        <img src="./content/images/image-3.svg" alt="profile picture">
+                    </td>
+                    <td>429 €</td>
+                    <td id="editIcon"><i class="fa-solid fa-pen"></i></td>
+                </tr>
+                <tr class="bg-gray">
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Jenny Wilson</td>
+                    <td>MasterCard</td>
+                    <td>
+                        <img src="./content/images/image-4.svg" alt="profile picture">
+                    </td>
+                    <td>826 €</td>
+                    <td id="editIcon"><i class="fa-solid fa-pen"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Kristin Watson</td>
+                    <td>Gillette</td>
+                    <td>
+                        <img src="./content/images/image-5.svg" alt="profile picture">
+                    </td>
+                    <td>561 €</td>
+                    <td id="editIcon"><i class="fa-solid fa-pen"></i></td>
+                </tr>
+                <tr class="bg-gray">
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Cameron Williamson</td>
+                    <td>Louis Vuitton</td>
+                    <td>
+                        <img src="./content/images/image-6.svg" alt="profile picture">
+                    </td>
+                    <td>540 €</td>
+                    <td id="editIcon"><i class="fa-solid fa-pen"></i></td>
+                </tr> -->
+            </tbody>
+        </table>
+        <div class="bg-edit edit-container d-none">
+            <button class="close-btn" id="closeBtn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <form class="bg-white">
+                <div>
+                    <label for="name">Name</label>
+                    <input id="inputName" type="text" name="name" id="name" class="form-control w-75">
+                </div>
+                <div>
+                    <label for="company">Company</label>
+                    <input id="inputCompany" type="text" name="company" id="company" class="form-control w-75">
+                </div>
+                <div>
+                    <label for="user">User</label>
+                    <input id="inputImg" type="text" name="user" id="user" class="form-control w-75">
+                </div>
+                <div>
+                    <label for="cart">Cart</label>
+                    <input id="inputCart" type="text" name="cart" id="cart" class="form-control w-75">
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary mt-3" id="submitBtn">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./content/js/index.js"></script>
+</body>
+
+</html>
