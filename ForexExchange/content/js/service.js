@@ -3,17 +3,16 @@ let myChart;
 export async function fetchData() {
   try {
     let response = await fetch(
-      "https://marketdata.tradermade.com/api/v1/live_currencies_list?api_key=0PlgKWjK1tzoSRW_ufVo"
+      "https://marketdata.tradermade.com/api/v1/live_currencies_list?api_key=2cLUSfRS5f-3BW4YKXho"
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
     const currencies = data.available_currencies;
-    console.log(currencies);
     populateDropdown(currencies);
   } catch (error) {
-    console.error("Error fetching currencies:", error);
+    alert("Requests may be finished");
   }
 }
 
@@ -65,8 +64,19 @@ export async function fetchTimeSeriesData(
   interval,
   period
 ) {
+  /////////////
+  const localStorageKey = `${currencyPair}_${startDate}_${endDate}`; // Create a unique key
+
+  // Check if data exists in local storage
+  const cachedData = localStorage.getItem(localStorageKey);
+  if (cachedData) {
+    console.log("Using cached data from local storage");
+    const data = JSON.parse(cachedData);
+    displayChart(data.quotes);
+    return;
+  }
   try {
-    const url = `https://marketdata.tradermade.com/api/v1/timeseries?api_key=0PlgKWjK1tzoSRW_ufVo&currency=${currencyPair}&format=records&start_date=${startDate}&end_date=${endDate}&interval=${interval}&period=${period}`;
+    const url = `https://marketdata.tradermade.com/api/v1/timeseries?api_key=2cLUSfRS5f-3BW4YKXho&currency=${currencyPair}&format=records&start_date=${startDate}&end_date=${endDate}&interval=${interval}&period=${period}`;
     console.log("Fetching data from URL:", url);
 
     const response = await fetch(url);
@@ -80,9 +90,10 @@ export async function fetchTimeSeriesData(
     if (!Array.isArray(data.quotes) || data.quotes.length === 0) {
       throw new Error("No quotes found in the API response.");
     }
+    localStorage.setItem(localStorageKey, JSON.stringify(data));
     displayChart(data.quotes);
   } catch (error) {
-    console.error("Error fetching time series data:", error);
+    alert("Error fetching time series data");
     const dataDisplay = document.getElementById("dataDisplay");
     if (dataDisplay) {
       dataDisplay.textContent = "Failed to fetch data";
@@ -107,7 +118,6 @@ export function displayChart(quotes) {
   )} (${percentChange.toFixed(2)}%)`;
   const currencyQuoteElement = document.getElementById("currencyQuote");
   currencyQuoteElement.textContent = `${lastClosePrice}`;
-
   const ctx = document.getElementById("myChart");
 
   let lbs = new Array(closePrices.length).fill("");
