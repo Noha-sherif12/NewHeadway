@@ -6,6 +6,7 @@ import { formatDateToLocal } from "./utils.js";
 import { fetchTimeSeriesData } from "./service.js";
 import { updateFlag } from "./service.js";
 
+
 const minutesBtn = document.getElementById("minutes");
 const hourBtn = document.getElementById("hour");
 const dayBtn = document.getElementById("day");
@@ -14,6 +15,8 @@ const monthBtn = document.getElementById("month");
 const firstCurrency = document.getElementById("firstCurrency");
 const secondCurrency = document.getElementById("secondCurrency");
 const dropdowns = document.querySelectorAll(".dropDown");
+const timeSeriesError = document.getElementById("timeSeriesError");
+const currencyFetchingError = document.getElementById("currencyFetchingError");
 
 firstCurrency.addEventListener("change", function () {
   useSelectedCurrencies();

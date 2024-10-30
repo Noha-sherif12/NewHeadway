@@ -1,10 +1,13 @@
+import { displayError } from "./utils.js";
+import { clearError } from "./utils.js";
+import { myKey } from "./config.js";
+import { fetchDataUrl } from "./config.js";
+import { fetchTimeSeriesUrl } from "./config.js";
 let myChart;
-
 export async function fetchData() {
   try {
-    let response = await fetch(
-      "https://marketdata.tradermade.com/api/v1/live_currencies_list?api_key=2cLUSfRS5f-3BW4YKXho"
-    );
+    let response = await fetch(`https://${fetchDataUrl}?api_key=${myKey}`);
+    clearError(currencyFetchingError);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -12,7 +15,7 @@ export async function fetchData() {
     const currencies = data.available_currencies;
     populateDropdown(currencies);
   } catch (error) {
-    alert("Requests may be finished");
+    displayError(currencyFetchingError);
   }
 }
 
@@ -34,10 +37,24 @@ export function getSelectedCurrencies() {
 
   return currencyCodes;
 }
+
 export function updateFlag(elementId, currencyCode) {
   const flagElement = document.getElementById(elementId);
   const countryCode = currencyCode.slice(0, 2).toLowerCase();
+
+  // Set the class for the flag
   flagElement.className = `fi rounded-circle fis fi-${countryCode}`;
+  flagElement.innerHTML = ""; 
+
+  // Check if the class is applied correctly (flag exists)
+  const isFlagExists = document.querySelector(`.fi-${countryCode}`) !== null;
+
+  if (!isFlagExists) {
+    flagElement.innerHTML = "The flag doesn't exist."; // Set error message
+    flagElement.className = "";
+  } else {
+    flagElement.innerHTML = ""; 
+  }
 }
 
 export function useSelectedCurrencies() {
@@ -49,11 +66,11 @@ export function useSelectedCurrencies() {
   }
 
   let currencyPair = selectedCurrencies.join("");
-  let currencyPairDisplay = selectedCurrencies.join("/");
+  let currencyPairLabel = selectedCurrencies.join("/");
 
   console.log("Combined Currency Pair:", currencyPair);
   let currencyPairElement = document.getElementById("currencyPair");
-  currencyPairElement.textContent = `${currencyPairDisplay}`;
+  currencyPairElement.textContent = `${currencyPairLabel}`;
   return currencyPair;
 }
 
@@ -76,10 +93,11 @@ export async function fetchTimeSeriesData(
     return;
   }
   try {
-    const url = `https://marketdata.tradermade.com/api/v1/timeseries?api_key=2cLUSfRS5f-3BW4YKXho&currency=${currencyPair}&format=records&start_date=${startDate}&end_date=${endDate}&interval=${interval}&period=${period}`;
+    const url = `https://${fetchTimeSeriesUrl}?api_key=${myKey}&currency=${currencyPair}&format=records&start_date=${startDate}&end_date=${endDate}&interval=${interval}&period=${period}`;
     console.log("Fetching data from URL:", url);
 
     const response = await fetch(url);
+    clearError(timeSeriesError);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -93,11 +111,7 @@ export async function fetchTimeSeriesData(
     localStorage.setItem(localStorageKey, JSON.stringify(data));
     displayChart(data.quotes);
   } catch (error) {
-    alert("Error fetching time series data");
-    const dataDisplay = document.getElementById("dataDisplay");
-    if (dataDisplay) {
-      dataDisplay.textContent = "Failed to fetch data";
-    }
+    displayError(timeSeriesError);
   }
 }
 
@@ -165,13 +179,13 @@ export function displayChart(quotes) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const staticQuotes = [
-    { date: "2024-10-01", close: 24.8 },
-    { date: "2024-10-02", close: 24.9 },
-    { date: "2024-10-03", close: 25.1 },
-    { date: "2024-10-04", close: 24.7 },
-    { date: "2024-10-05", close: 25.0 },
-    { date: "2024-10-06", close: 24.6 },
-    { date: "2024-10-07", close: 25.2 },
+    { date: "", close: 0 },
+    { date: "", close: 0 },
+    { date: "", close: 0 },
+    { date: "", close: 0 },
+    { date: "", close: 0 },
+    { date: "", close: 0 },
+    { date: "", close: 0 },
   ];
   displayChart(staticQuotes);
 });

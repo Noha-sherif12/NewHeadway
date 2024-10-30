@@ -14,6 +14,11 @@ main {
 
     .select-container {
       gap: 1.25rem;
+      #currencyFetchingError {
+        font-weight: 600;
+        color: red;
+        font-size: 20px;
+      }
       select {
         border: 1px #e2e4e8 solid;
         border-radius: 5px;
@@ -27,6 +32,10 @@ main {
         font-size: 24px;
       }
       #currencyQuote {
+        font-weight: 600;
+      }
+      #timeSeriesError {
+        color: red;
         font-weight: 600;
       }
       #currencyPair {
